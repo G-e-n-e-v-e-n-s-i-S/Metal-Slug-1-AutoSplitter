@@ -1,17 +1,4 @@
 
-/*
- * 
- *	Okay here's the plan:
- *	Signature scan for the screen
- *	Look for the colors of arrays of pixels on screen
- *	Split when these arrays match some predictable values
- *	Signature scan for the health variable of the last boss
- *	Split when his health reaches zero
- * 
- */
-
-
-
 
 
 state("mslug1")
@@ -168,7 +155,7 @@ startup
 
 	//An array of bytes to find the boss's health variable
 	vars.scannerTargetBossHealth = new SigScanTarget(10, "FF FF FF FF FF FF FF FF FF FF ?? ?? 00 ?? 00 00 FF FF FF 00 ?? ?? ?? ?? ?? ?? ?? ?? FF FF ?? ?? ?? ?? FF FF 02 ?? ?? ?? ?? ?? 80 80");
-	
+
 
 
 	//The pointer to the boss's health, once we found it with the scan
@@ -224,7 +211,7 @@ init
 		
 		//The foot of the character when he hits the ground at the start of mission 1
 		//Starts at pixel ( 62 , 182 )
-		vars.colorsFoot = new byte[]		{
+		vars.colorsRunStart = new byte[]		{
 													64,		96,		120,	0,
 													24,		56,		72,		0,
 													48,		72,		88,		0,
@@ -237,7 +224,7 @@ init
 													72,		104,	112,	0
 												};
 		
-		vars.offsetFoot = 0x36178;
+		vars.offsetRunStart = 0x36178;
 		
 		
 		
@@ -262,7 +249,7 @@ init
 
 		//The pillar of the hangar in the background of the fight against Morden
 		//Starts at pixel ( 283 , 157 )
-		vars.colorsHangar = new byte[]			{
+		vars.colorsBossStart = new byte[]		{
 													96,		112,	120,	0,
 													104,	136,	144,	0,
 													104,	136,	144,	0,
@@ -275,7 +262,7 @@ init
 													64,		72,		72,		0
 												};
 
-		vars.offsetHangar = 0x2EE2C;
+		vars.offsetBossStart = 0x2EE2C;
 
 	}
 
@@ -284,9 +271,9 @@ init
 	else //if(game.ProcessName.Equals("mslug1"))
 	{
 		
-		//The footsteps in the sand when the character hits the ground at the start of mission 1
-		//Starts at pixel ( 104 , 147 )
-		vars.colorsFoot = new byte[]		{
+		//The foot of the character when he hits the ground at the start of mission 1
+		//Starts at pixel ( 62 , 182 )
+		vars.colorsRunStart = new byte[]		{
 													66,		97,		123,	255,
 													24,		56,		74,		255,
 													49,		73,		90,		255,
@@ -299,7 +286,7 @@ init
 													74,		105,	115,	255
 												};
 		
-		vars.offsetFoot = 0x5B127;
+		vars.offsetRunStart = 0x5B127;
 	
 		
 
@@ -324,7 +311,7 @@ init
 
 		//The pillar of the hangar in the background of the fight against Morden
 		//Starts at pixel ( 283 , 157 )
-		vars.colorsHangar = new byte[]			{
+		vars.colorsBossStart = new byte[]		{
 													99,		113,	123,	255,
 													107,	138,	148,	255,
 													107,	138,	148,	255,
@@ -337,7 +324,7 @@ init
 													66,		73,		74,		255
 												};
 
-		vars.offsetHangar = 0x4EC9B;
+		vars.offsetBossStart = 0x4EC9B;
 		
 	}
 }
@@ -348,11 +335,6 @@ init
 
 exit
 {
-
-	//Pause if game is not running
-	timer.IsGameTimePaused = true;
-
-
 
 	//The pointers and watchers are no longer valid
 	vars.pointerScreen = IntPtr.Zero;
@@ -388,14 +370,19 @@ update
 		
 		if (vars.watcherScreen.Changed)
 		{
-			//print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! screen changed");
+			
+			//Notify
+			print("[MS1 AutoSplitter] Screen region changed");
+
+
+
 			//Void the pointer
 			vars.pointerScreen = IntPtr.Zero;
 
 		}
-
-		//print(vars.pointerScreen.ToString());
-	
+		
+		
+		
 		//If the screen pointer is void
 		if (vars.pointerScreen == IntPtr.Zero)
 		{
@@ -406,8 +393,11 @@ update
 			if (timeSinceLastScan > 300)
 			{
 				
+				//Notify
 				print("[MS1 AutoSplitter] Scanning for screen");
-				
+
+
+
 				//Scan for the screen
 				vars.pointerScreen = vars.FindArray(game, vars.scannerTargetScreen);
 			
@@ -416,7 +406,12 @@ update
 				//If the scan was successful
 				if (vars.pointerScreen != IntPtr.Zero)
 				{
+
+					//Notify
 					print("[MS1 AutoSplitter]  Found screen");
+
+
+
 					//Create a new memory watcher
 					vars.watcherScreen = new MemoryWatcher<short>(vars.pointerScreen);
 
@@ -442,12 +437,12 @@ update
 		//Debug print an array
 		//print("Rugname");
 		
-		//vars.PrintArray(vars.ReadArray(game, vars.offsetHangar));
+		//vars.PrintArray(vars.ReadArray(game, vars.offsetBossStart));
 
 		
 	
 		//Check if we should start/restart the timer
-		vars.restart = vars.MatchArray(vars.ReadArray(game, vars.offsetFoot), vars.colorsFoot);
+		vars.restart = vars.MatchArray(vars.ReadArray(game, vars.offsetRunStart), vars.colorsRunStart);
 		
 	}
 }
@@ -539,13 +534,13 @@ split
 	{
 		
 		//When the pillar of the hangar becomes visible
-		byte[] pixels = vars.ReadArray(game, vars.offsetHangar);
+		byte[] pixels = vars.ReadArray(game, vars.offsetBossStart);
 	
-		if (vars.MatchArray(pixels, vars.colorsHangar))
+		if (vars.MatchArray(pixels, vars.colorsBossStart))
 		{
 			
 			//Notify
-			print("[MS1 AutoSplitter] Morden fight starting");
+			print("[MS1 AutoSplitter] Last fight starting");
 
 
 
@@ -589,8 +584,11 @@ split
 			if (vars.pointerBossHealth != IntPtr.Zero)
 			{
 				
+				//Notify
 				print("[MS1 AutoSplitter] Found health");
-				
+
+
+
 				//Create a new memory watcher
 				vars.watcherBossHealth = new MemoryWatcher<short>(vars.pointerBossHealth);
 
@@ -623,7 +621,7 @@ split
 		{
 			
 			//Notify
-			print("[MS1 AutoSplitter] Monitoring Morden's health");
+			print("[MS1 AutoSplitter] Monitoring health");
 
 
 
