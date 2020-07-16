@@ -229,7 +229,7 @@ init
 		
 		
 		//The exclamation mark in the Mission Complete !" text
-		//Starts at pixel ( 247 , 113 )
+		//Starts at pixel ( 247 , 114 )
 		vars.colorsExclamationMark = new byte[] {
 													0,		0,		0,		0,
 													248,	248,	248,	0,
@@ -243,7 +243,7 @@ init
 													0,		0,		0,		0
 												};
 
-		vars.offsetExclamationMark = 0x21C9C;
+		vars.offsetExclamationMark = 0x2215C;
 		
 		
 
@@ -291,7 +291,7 @@ init
 		
 
 		//The exclamation mark in the Mission Complete !" text
-		//Starts at pixel ( 247 , 113 )
+		//Starts at pixel ( 247 , 114 )
 		vars.colorsExclamationMark = new byte[] {
 													0,		0,		0,		255,
 													255,	251,	255,	255,
@@ -305,7 +305,7 @@ init
 													0,		0,		0,		255
 												};
 
-		vars.offsetExclamationMark = 0x38C0B;
+		vars.offsetExclamationMark = 0x3940B;
 
 		
 
@@ -339,11 +339,13 @@ exit
 	//The pointers and watchers are no longer valid
 	vars.pointerScreen = IntPtr.Zero;
 	
-	vars.watcherScreen = null;
+	vars.watcherScreen = new MemoryWatcher<short>(IntPtr.Zero);
+
+	vars.watcherScreen.FailAction = MemoryWatcher.ReadFailAction.SetZeroOrNull;
 
 	vars.pointerBossHealth = IntPtr.Zero;
 
-	vars.watcherBossHealth = null;
+	vars.watcherBossHealth = new MemoryWatcher<short>(IntPtr.Zero);
 
 }
 
@@ -364,7 +366,7 @@ update
 	//For Steam, do a scan
 	else
 	{
-
+		
 		//If the screen region changed place in memory
 		vars.watcherScreen.Update(game);
 		
@@ -437,7 +439,7 @@ update
 		//Debug print an array
 		//print("Rugname");
 		
-		//vars.PrintArray(vars.ReadArray(game, vars.offsetBossStart));
+		//vars.PrintArray(vars.ReadArray(game, vars.offsetExclamationMark));
 
 		
 	
@@ -466,7 +468,7 @@ reset
 		
 		vars.pointerBossHealth = IntPtr.Zero;
 
-		vars.watcherBossHealth = null;
+		vars.watcherBossHealth = new MemoryWatcher<short>(IntPtr.Zero);
 
 		return true;
 	}
@@ -511,7 +513,7 @@ split
 
 
 	//Missions 1, 2, 3, 4 and 5
-	if (vars.splitCounter< 5)
+	if (vars.splitCounter < 5)
 	{
 		
 		//Split when the exclamation mark from the "Mission Complete !" text is in the right spot
