@@ -420,11 +420,6 @@ update
 		if (vars.watcherScreen.Changed)
 		{
 			
-			//Notify
-			print("[MS1 AutoSplitter] Screen region changed");
-
-
-
 			//Void the pointer
 			vars.pointerScreen = IntPtr.Zero;
 
@@ -483,16 +478,20 @@ update
 	if (vars.pointerScreen != IntPtr.Zero)
 	{
 		
-		//Debug print an array
-		//print("Rugname");
-		
-		//vars.PrintArray(vars.ReadArray(game, vars.offsetExclamationMark));
+		//Debug print
+		/*
+		if (vars.localTickCount % 10 == 0)
+		{
+			print("[MS1 AutoSplitter] " + vars.splitCounter.ToString() + " - " + "RunStart");
+			
+			vars.PrintArray(vars.ReadArray(game, vars.offsetRunStart));
+		}
+		*/
 
 		
 	
 		//Check if we should start/restart the timer
-		vars.restart = vars.MatchArray(vars.ReadArray(game, vars.offsetExclamationMark), vars.colorsExclamationMark);
-		
+		vars.restart = vars.MatchArray(vars.ReadArray(game, vars.offsetRunStart), vars.colorsRunStart);
 	}
 }
 
@@ -530,6 +529,18 @@ start
 	
 	if (vars.restart)
 	{
+		vars.splitCounter = 0;
+		
+		vars.prevSplitTime = -1;
+		
+		vars.prevScanTimeScreen = -1;
+
+		vars.prevScanTimeBossHealth = -1;
+		
+		vars.pointerBossHealth = IntPtr.Zero;
+
+		vars.watcherBossHealth = new MemoryWatcher<short>(IntPtr.Zero);
+
 		return true;
 	}
 }
@@ -555,25 +566,6 @@ split
 	if (vars.pointerScreen == IntPtr.Zero)
 	{
 		return false;
-	}
-
-
-
-	//Debug Print
-	if (vars.localTickCount % 10 == 0)
-	{
-		byte[] bytes = vars.ReadArray(game, vars.offsetExclamationMark);
-
-		var str = new System.Text.StringBuilder();
-
-		for (int i = 0; i<bytes.Length; i++)
-		{
-			str.Append(bytes[i].ToString());
-
-			str.Append(" ");
-		}
-
-		print(vars.splitCounter.ToString() + " - " + str.ToString());
 	}
 
 
@@ -623,11 +615,6 @@ split
 		if (vars.MatchArray(pixels, vars.colorsBossStart))
 		{
 			
-			//Notify
-			print("[MS1 AutoSplitter] Last fight starting");
-
-
-
 			//Clear the pointer to the boss's health
 			vars.pointerBossHealth = IntPtr.Zero;
 			
@@ -704,11 +691,6 @@ split
 		if (vars.watcherBossHealth.Current > 0)
 		{
 			
-			//Notify
-			print("[MS1 AutoSplitter] Monitoring health");
-
-
-
 			//Go to next phase
 			vars.splitCounter++;
 
@@ -729,8 +711,6 @@ split
 		//Split when the boss's health reaches 0
 		if (vars.watcherBossHealth.Current == 0)
 		{
-			print("[MS1 AutoSplitter] Run end");
-
 			vars.splitCounter++;
 
 			vars.prevSplitTime = Environment.TickCount;
