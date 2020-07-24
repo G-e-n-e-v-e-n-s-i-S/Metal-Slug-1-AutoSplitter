@@ -183,6 +183,7 @@ startup
 	
 
 
+	//A local tickCount to do stuff sometimes
 	vars.localTickCount = 0;
 }
 
@@ -490,7 +491,7 @@ update
 		
 	
 		//Check if we should start/restart the timer
-		vars.restart = vars.MatchArray(vars.ReadArray(game, vars.offsetRunStart), vars.colorsRunStart);
+		vars.restart = vars.MatchArray(vars.ReadArray(game, vars.offsetExclamationMark), vars.colorsExclamationMark);
 		
 	}
 }
@@ -572,7 +573,7 @@ split
 			str.Append(" ");
 		}
 
-		print(str.ToString());
+		print(vars.splitCounter.ToString() + " - " + str.ToString());
 	}
 
 
