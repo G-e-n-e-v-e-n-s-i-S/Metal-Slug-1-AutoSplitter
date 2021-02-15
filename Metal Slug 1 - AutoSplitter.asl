@@ -11,6 +11,11 @@ state("WinKawaks")
 	int pointerScreen : 0x0046B270;
 }
 
+state("fcadefbneo")
+{
+	int pointerScreen : 0x02CC2280, 0x4, 0x4, 0x14;
+}
+
 
 
 
@@ -23,9 +28,7 @@ startup
 	{
 
 		IntPtr pointer = IntPtr.Zero;
-
-
-
+		
 		foreach (var page in process.MemoryPages())
 		{
 
@@ -36,9 +39,7 @@ startup
 			if (pointer != IntPtr.Zero) break;
 
 		}
-
-
-
+		
 		return pointer;
 
 	};
@@ -47,13 +48,13 @@ startup
 
 
 
-	//A function that reads an array of 40 bytes in the screen memory
+	//A function that reads an array of 60 bytes in the screen memory
 	Func<Process, int, byte[]> ReadArray = (process, offset) =>
 	{
 
-		byte[] bytes = new byte[40];
+		byte[] bytes = new byte[60];
 
-		bool succes = ExtensionMethods.ReadBytes(process, vars.pointerScreen + offset, 40, out bytes);
+		bool succes = ExtensionMethods.ReadBytes(process, vars.pointerScreen + offset, 60, out bytes);
 
 		if (!succes)
 		{
@@ -77,7 +78,7 @@ startup
 			return false;
 		}
 
-		for (int i = 0; i < bytes.Length; i++)
+		for (int i = 0; i < bytes.Length && i < colors.Length; i++)
 		{
 
 			if (bytes[i] != colors[i])
@@ -134,7 +135,7 @@ startup
 	//An array of bytes to find the screen's pixel array memory region
 	vars.scannerTargetScreen = new SigScanTarget(0, "10 08 00 00 ?? ?? 00 ?? ?? ?? ?? 00 00 00 04 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 20");
 
-
+	
 
 	//The pointer to the screen's pixel array memory region, once we found it with the scan
 	vars.pointerScreen = IntPtr.Zero;
@@ -185,6 +186,7 @@ startup
 
 	//A local tickCount to do stuff sometimes
 	vars.localTickCount = 0;
+
 }
 
 
@@ -286,6 +288,107 @@ init
 												};
 
 		vars.offsetBossStart = 0x2EE2C;
+
+	}
+
+
+
+	else if (game.ProcessName.Equals("fcadefbneo"))
+	{
+		
+		//The foot of the character when he hits the ground at the start of mission 1
+		//Starts at pixel ( 62 , 182 )
+		vars.colorsRunStart = new byte[]		{
+													66,  99,  123, 0,
+													66,  99,  123, 0,
+													24,  57,  74,  0,
+													24,  57,  74,  0,
+													49,  74,  90,  0,
+													49,  74,  90,  0,
+													115, 181, 206, 0,
+													115, 181, 206, 0,
+													49,  74,  90,  0,
+													49,  74,  90,  0,
+													49,  74,  90,  0,
+													49,  74,  90,  0,
+													41,  74,  99,  0,
+													41,  74,  99,  0,
+													41,  49,  49,  0
+												};
+		
+		vars.offsetRunStart = 0xD83F0;
+		
+		
+		
+		//The exclamation mark in the Mission Complete !" text
+		//Starts at pixel ( 247 , 114 )
+		vars.colorsExclamationMark = new byte[] {
+													0,   0,   0,   0,
+													0,   0,   0,   0,
+													255, 255, 255, 0,
+													255, 255, 255, 0,
+													0,   0,   123, 0,
+													0,   0,   123, 0,
+													49,  214, 255, 0,
+													49,  214, 255, 0,
+													24,  148, 255, 0,
+													24,  148, 255, 0,
+													49,  214, 255, 0,
+													49,  214, 255, 0,
+													24,  148, 255, 0,
+													24,  148, 255, 0,
+													49,  214, 255, 0
+												};
+
+		vars.offsetExclamationMark = 0x87DB8;
+		
+		
+
+		//The grey of the UI
+		//Starts at pixel ( 80 , 8 )
+		vars.colorsUI = new byte[]				{
+													189, 173, 165, 0,
+													189, 173, 165, 0,
+													189, 173, 165, 0,
+													189, 173, 165, 0,
+													189, 173, 165, 0,
+													189, 173, 165, 0,
+													189, 173, 165, 0,
+													189, 173, 165, 0,
+													189, 173, 165, 0,
+													189, 173, 165, 0,
+													189, 173, 165, 0,
+													189, 173, 165, 0,
+													189, 173, 165, 0,
+													189, 173, 165, 0,
+													189, 173, 165, 0
+												};
+
+		vars.offsetUI = 0x9A80;
+		
+		
+		
+		//The pillar of the hangar in the background of the fight against Morden
+		//Starts at pixel ( 283 , 157 )
+		vars.colorsBossStart = new byte[]		{
+													99,  115, 123, 0,
+													99,  115, 123, 0,
+													107, 140, 148, 0,
+													107, 140, 148, 0,
+													107, 140, 148, 0,
+													107, 140, 148, 0,
+													107, 140, 148, 0,
+													107, 140, 148, 0,
+													99,  115, 123, 0,
+													99,  115, 123, 0,
+													82,  99,  99,  0,
+													82,  99,  99,  0,
+													66,  74,  74,  0,
+													66,  74,  74,  0,
+													82,  99,  99,  0
+												};
+
+		vars.offsetBossStart = 0xBAFD8;
 
 	}
 
@@ -405,7 +508,7 @@ update
 
 	//Try to find the screen
 	//For Kawaks, follow the pointer path
-	if(game.ProcessName.Equals("WinKawaks"))
+	if(game.ProcessName.Equals("WinKawaks") || game.ProcessName.Equals("fcadefbneo"))
 	{
 		vars.pointerScreen = new IntPtr(current.pointerScreen);
 	}
@@ -478,20 +581,21 @@ update
 	if (vars.pointerScreen != IntPtr.Zero)
 	{
 		
-		//Debug print
 		/*
+		//Debug print
 		if (vars.localTickCount % 10 == 0)
 		{
-			print("[MS1 AutoSplitter] " + vars.splitCounter.ToString() + " - " + "RunStart");
+			print("[MS1 AutoSplitter] Debug " + vars.splitCounter.ToString());
 			
-			vars.PrintArray(vars.ReadArray(game, vars.offsetRunStart));
+			vars.PrintArray(vars.ReadArray(game, vars.offsetBossStart));
 		}
 		*/
 
 		
-	
+		
 		//Check if we should start/restart the timer
 		vars.restart = vars.MatchArray(vars.ReadArray(game, vars.offsetRunStart), vars.colorsRunStart);
+
 	}
 }
 
