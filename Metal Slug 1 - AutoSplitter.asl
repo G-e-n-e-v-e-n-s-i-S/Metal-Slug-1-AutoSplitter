@@ -259,7 +259,8 @@ init
 		
 
 		//The grey of the UI
-		//Starts at pixel ( 80 , 8 )
+		//Starts at pixel ( 80 , 8 ) for player 1
+		//Starts at pixel ( 176 , 8 ) for player 2
 		vars.colorsUI = new byte[]				{
 													184, 168, 160, 0,
 													184, 168, 160, 0,
@@ -274,6 +275,8 @@ init
 												};
 
 		vars.offsetUI = 0x2740;
+		
+		vars.offsetUI2 = 0x28C0;
 		
 		
 		
@@ -350,7 +353,8 @@ init
 		
 
 		//The grey of the UI
-		//Starts at pixel ( 80 , 8 )
+		//Starts at pixel ( 80 , 8 ) for player 1
+		//Starts at pixel ( 176 , 8 ) for player 2
 		vars.colorsUI = new byte[]				{
 													189, 173, 165, 0,
 													189, 173, 165, 0,
@@ -371,8 +375,10 @@ init
 
 		vars.offsetUI = 0x9A80;
 		
+		vars.offsetUI2 = 0x9D80;
 		
 		
+
 		//The pillar of the hangar in the background of the fight against Morden
 		//Starts at pixel ( 283 , 157 )
 		vars.colorsBossStart = new byte[]		{
@@ -441,7 +447,8 @@ init
 		
 
 		//The grey of the UI
-		//Starts at pixel ( 80 , 8 )
+		//Starts at pixel ( 80 , 8 ) for player 1
+		//Starts at pixel ( 176 , 8 ) for player 2
 		vars.colorsUI = new byte[]				{
 													189, 170, 165, 255,
 													189, 170, 165, 255,
@@ -457,7 +464,9 @@ init
 
 		vars.offsetUI = 0x416F;
 		
+		vars.offsetUI2 = 0x42EF;
 		
+
 		
 		//The pillar of the hangar in the background of the fight against Morden
 		//Starts at pixel ( 283 , 157 )
@@ -734,8 +743,10 @@ split
 		
 		//When the pillar of the hangar becomes visible
 		byte[] pixels = vars.ReadArray(game, vars.offsetBossStart);
-	
-		if (vars.MatchArray(pixels, vars.colorsBossStart))
+		
+		byte[] pixels2 = vars.ReadArray(game, vars.offsetUI2);
+			
+		if (!vars.MatchArray(pixels, vars.colorsUI) && !vars.MatchArray(pixels2, vars.colorsUI))
 		{
 			
 			//Clear the pointer to the boss's health
