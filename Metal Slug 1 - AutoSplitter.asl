@@ -724,7 +724,9 @@ split
 			//Split when the UI disappears after we've seen the exclamation mark
 			byte[] pixels = vars.ReadArray(game, vars.offsetUI);
 			
-			if (!vars.MatchArray(pixels, vars.colorsUI))
+			byte[] pixels2 = vars.ReadArray(game, vars.offsetUI2);
+			
+			if (!vars.MatchArray(pixels, vars.colorsUI) && !vars.MatchArray(pixels2, vars.colorsUI))
 			{
 				vars.splitCounter++;
 			
@@ -744,9 +746,7 @@ split
 		//When the pillar of the hangar becomes visible
 		byte[] pixels = vars.ReadArray(game, vars.offsetBossStart);
 		
-		byte[] pixels2 = vars.ReadArray(game, vars.offsetUI2);
-			
-		if (!vars.MatchArray(pixels, vars.colorsUI) && !vars.MatchArray(pixels2, vars.colorsUI))
+		if (vars.MatchArray(pixels, vars.colorsBossStart))
 		{
 			
 			//Clear the pointer to the boss's health
