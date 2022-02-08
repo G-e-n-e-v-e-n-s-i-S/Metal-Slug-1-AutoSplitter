@@ -867,6 +867,8 @@ split
 		{
 			vars.prevSplitTime = Environment.TickCount;
 			
+			vars.splitCounter++;
+			
 			return true;
 		}
 	}
