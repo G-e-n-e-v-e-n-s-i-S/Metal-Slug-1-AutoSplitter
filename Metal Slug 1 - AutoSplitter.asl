@@ -185,7 +185,7 @@ startup
 
 
 	//The split/state we are currently on
-	vars.splitCounter = 10;
+	vars.splitCounter = 0;
 	
 	
 	
