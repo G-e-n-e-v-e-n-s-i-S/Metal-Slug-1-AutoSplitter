@@ -185,7 +185,7 @@ startup
 
 
 	//The split/state we are currently on
-	vars.splitCounter = 10;
+	vars.splitCounter = 0;
 	
 	
 	
@@ -637,7 +637,7 @@ reset
 	
 	if (vars.restart)
 	{
-		vars.splitCounter = 10;
+		vars.splitCounter = 0;
 		
 		vars.confirmKillCounter = 0;
 		
@@ -666,7 +666,7 @@ start
 	
 	if (vars.restart)
 	{
-		vars.splitCounter = 10;
+		vars.splitCounter = 0;
 		
 		vars.confirmKillCounter = 0;
 		
