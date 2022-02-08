@@ -637,7 +637,7 @@ reset
 	
 	if (vars.restart)
 	{
-		vars.splitCounter = 0;
+		vars.splitCounter = 10;
 		
 		vars.confirmKillCounter = 0;
 		
@@ -666,7 +666,7 @@ start
 	
 	if (vars.restart)
 	{
-		vars.splitCounter = 0;
+		vars.splitCounter = 10;
 		
 		vars.confirmKillCounter = 0;
 		
@@ -857,21 +857,17 @@ split
 		//Count how many frames the boss's health stayed at 0
 		if (vars.watcherBossHealth.Current == 0)
 		{
-		
 			vars.confirmKillCounter++;
-			
 		}
 		
 		
 		
-		//Split if his health has stayed at 0 for more than 5 ticks
-		if (vars.confirmKillCounter > 5)
+		//Split if his health has stayed at 0 for more than 4 ticks
+		if (vars.confirmKillCounter > 4)
 		{
-		
 			vars.prevSplitTime = Environment.TickCount;
 			
 			return true;
-			
 		}
 	}
 }
