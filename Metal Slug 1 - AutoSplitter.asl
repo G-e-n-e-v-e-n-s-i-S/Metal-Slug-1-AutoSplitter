@@ -187,8 +187,13 @@ startup
 	//The split/state we are currently on
 	vars.splitCounter = 0;
 	
-
-
+	
+	
+	//The counter to make sure Morden's Health stays at zero
+	vars.confirmKillCounter = 0;
+	
+	
+	
 	//A local tickCount to do stuff sometimes
 	vars.localTickCount = 0;
 
@@ -505,7 +510,7 @@ exit
 	vars.pointerBossHealth = IntPtr.Zero;
 
 	vars.watcherBossHealth = new MemoryWatcher<short>(IntPtr.Zero);
-
+	
 }
 
 
@@ -634,8 +639,10 @@ reset
 	{
 		vars.splitCounter = 0;
 		
+		vars.confirmKillCounter = 0;
+		
 		vars.prevRestartTime = Environment.TickCount;
-
+		
 		vars.prevSplitTime = -1;
 		
 		vars.prevScanTimeScreen = -1;
@@ -660,6 +667,8 @@ start
 	if (vars.restart)
 	{
 		vars.splitCounter = 0;
+		
+		vars.confirmKillCounter = 0;
 		
 		vars.prevRestartTime = Environment.TickCount;
 
@@ -754,7 +763,7 @@ split
 			
 			
 			
-			//Move to next phase, prevent splitting/scanning for 10 seconds (but don't actually split)
+			//Move to next phase, prevent splitting/scanning for a while (but don't actually split)
 			vars.splitCounter++;
 			
 			vars.prevSplitTime = Environment.TickCount;
@@ -784,7 +793,7 @@ split
 			vars.pointerBossHealth = vars.FindArray(game, vars.scannerTargetBossHealth);
 			
 			
-		
+			
 			//If the scan was successful
 			if (vars.pointerBossHealth != IntPtr.Zero)
 			{
@@ -814,12 +823,13 @@ split
 		}
 	}
 
-
+	
 
 	//Check that the boss's health has been reset above 0
 	else if (vars.splitCounter == 12)
 	{
 		
+		//Update watcher
 		vars.watcherBossHealth.Update(game);
 		
 		if (vars.watcherBossHealth.Current > 0)
@@ -827,29 +837,41 @@ split
 			
 			//Go to next phase
 			vars.splitCounter++;
-
+			
+			vars.confirmKillCount = 0;
+			
 		}
 	}
 
-
+	
 
 	//Check that the boss's health has been reduced to 0
 	else if (vars.splitCounter == 13)
 	{
-
+		
 		//Update watcher
 		vars.watcherBossHealth.Update(game);
 		
 		
 		
-		//Split when the boss's health reaches 0
+		//Count how many frames the boss's health stayed at 0
 		if (vars.watcherBossHealth.Current == 0)
 		{
-			vars.splitCounter++;
-
+		
+			vars.confirmKillCount++;
+			
+		}
+		
+		
+		
+		//Split if his health has stayed at 0 for more than 5 ticks
+		if (vars.confirmKillCount > 5)
+		{
+		
 			vars.prevSplitTime = Environment.TickCount;
 			
 			return true;
+			
 		}
 	}
 }
