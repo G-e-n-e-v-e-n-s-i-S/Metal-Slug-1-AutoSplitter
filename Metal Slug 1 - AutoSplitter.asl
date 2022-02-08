@@ -185,7 +185,7 @@ startup
 
 
 	//The split/state we are currently on
-	vars.splitCounter = 0;
+	vars.splitCounter = 10;
 	
 	
 	
@@ -854,10 +854,15 @@ split
 		
 		
 		
-		//Count how many frames the boss's health stayed at 0
+		//Count how many successive frames the boss's health stayed at 0
 		if (vars.watcherBossHealth.Current == 0)
 		{
 			vars.confirmKillCounter++;
+		}
+		
+		else
+		{
+			vars.confirmKillCounter = 0;
 		}
 		
 		
