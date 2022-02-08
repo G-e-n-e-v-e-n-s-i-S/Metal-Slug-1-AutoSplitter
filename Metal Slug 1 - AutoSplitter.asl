@@ -838,7 +838,7 @@ split
 			//Go to next phase
 			vars.splitCounter++;
 			
-			vars.confirmKillCount = 0;
+			vars.confirmKillCounter = 0;
 			
 		}
 	}
@@ -858,14 +858,14 @@ split
 		if (vars.watcherBossHealth.Current == 0)
 		{
 		
-			vars.confirmKillCount++;
+			vars.confirmKillCounter++;
 			
 		}
 		
 		
 		
 		//Split if his health has stayed at 0 for more than 5 ticks
-		if (vars.confirmKillCount > 5)
+		if (vars.confirmKillCounter > 5)
 		{
 		
 			vars.prevSplitTime = Environment.TickCount;
