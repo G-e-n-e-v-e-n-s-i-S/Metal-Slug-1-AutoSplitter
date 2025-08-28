@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Run version="1.7.0">
+  <GameIcon><![CDATA[AAEAAAD/////AQAAAAAAAAAMAgAAAFFTeXN0ZW0uRHJhd2luZywgVmVyc2lvbj00LjAuMC4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWIwM2Y1ZjdmMTFkNTBhM2EFAQAAABVTeXN0ZW0uRHJhd2luZy5CaXRtYXABAAAABERhdGEHAgIAAAAJAwAAAA8DAAAAqwQAAAKJUE5HDQoaCgAAAA1JSERSAAAAZAAAAGQIBgAAAHDilVQAAAAEZ0FNQQAAsY8L/GEFAAAACXBIWXMAAAsMAAALDAE/QCLIAAAETUlEQVR4Xu3dsY1cRxCE4TXPZAg0ZTIEmjIZCk2ZMmkyDIZAUyFcGAzhvBUgtKX9HraAeXMzu+wCfudhZqq7ylnjgLtcr9dmI/ixWQc/Nuvgx2Yd/Nisgx+bdfBjsw5+bNbBj806+LFZBz826+DHZh382KyDH5t18GOzjnfRxw+X62zKqpVIAZ5NWbUSKcCzKatWIgV4NmXVSqQAz6asWv+Xwnp7/XrDlz8uN3z78+WG1++fb9A5+Yoa8/eRQuhCFkohdCELpRC6kIVSCF3IO0kLK3wFKBR+inw1X43+nNLCCkbhCwWdIl/NV6M/p7SwglH4QkGnyFfz1ejPKS2sYBS+UNAp8tV8NfpzSgsrGIUvFHSKfDVfjf740nJnhyoPIV+RetSKjyUtkoaQIg8hX5F61IqPJS2ShpAiDyFfkXrUio8lLZKGkCIPIV+RetSKjyUtkoaQIg8hX5F61IqPJS2iEET6C+jnj79ueHv7dYPujlArPpa0iMIXXcgEaRGFL7qQCdIiCl90IROkRRS+6EImSIukqCSd06+iv18uN6ikFJWuWWrtfaWhU7qQCdLQKV3IBGnolC5kgjR0ShcyQRpav57S8EVayAjyFbX2vtLQXchCaeguZKE0dBeyUBq6C9lMWkSh6lyK3hP/fLpEqCS9p1lq7X2lodPlUvSeUPiiCzlYLkXvCYUvupCD5VL0nlD4ogs5WC5F7wmFL367QoR+eQndTVGoKfq1KA9RUewhDSgUvtDdFAWd0oUcoLspCjqlCzlAd1MUdEoXcoDupijolKcuRAsr/PScPHaiothDGjANOj0nj52oKPaQBkyDTs/JYycqij2kAdOg03Py2ImKYg9pwDTo9Jw8dqKiOE8ySdGvkzRoMXJX851NRTZXMk7pQiZIxildyATJOKULmSAZp3QhE6QQFLRQMDuh3XRO4adUjOdJQyt8oeV2QrvpnIJOqRjPk4ZW+ELL7YR20zkFnVIxnicNrfCFltsJ7aZzCjqlYjxPGlrhCy23E9pN5xR0SsV4nhQ0wZ/265wW1rkhMIt8U1Sc0CwqSVTc9yUTghB0Tgvr3BCYRb4pCl9oFoUvKu77kglBCDqnhXVuCMwi3xSFLzSLwhcV933JhCAEndPCOjcEZpFvisIXmkXhi4r7vmRCEILOaWGdGwKzyDdF4QvNovBFxX1fqbEYuXs6KIngblqS7hL4xiWNGI/cPR2EQHC3C5kBQiC424XMACEQ3O1CZoAQCO5uX4gGTNF7KVxuESO76b0uZJCR3fReFzLIyG56rwsZZGQ3vdeFDDKym96LCxkx1l2huyL9rztaWMhDyCNF7wnNx5JGTHRX6K7oQrqQ/5BHit4Tmq8LOUAeKXpPaL4u5AB5pOg9oflYiA4KmaQBpshjBHkI3U3Re0J3u5ADdDdF7wnd7UIO0N0UvSd0tws5QHdT9J7Q3S7kAN1N0XtCd28LuVz/BQW5GurAVn7NAAAAAElFTkSuQmCCCw==]]></GameIcon>
+  <GameName>Metal Slug</GameName>
+  <CategoryName>Medium (Kawaks)</CategoryName>
+  <LayoutPath>
+  </LayoutPath>
+  <Metadata>
+    <Run id="" />
+    <Platform usesEmulator="False">
+    </Platform>
+    <Region>
+    </Region>
+    <Variables />
+    <CustomVariables />
+  </Metadata>
+  <Offset>00:00:00</Offset>
+  <AttemptCount>11</AttemptCount>
+  <AttemptHistory>
+    <Attempt id="1" started="08/24/2025 13:38:44" isStartedSynced="False" ended="08/24/2025 13:38:58" isEndedSynced="True" />
+    <Attempt id="2" started="08/24/2025 13:38:58" isStartedSynced="True" ended="08/24/2025 13:39:12" isEndedSynced="True" />
+    <Attempt id="3" started="08/24/2025 13:39:12" isStartedSynced="True" ended="08/24/2025 13:39:19" isEndedSynced="True" />
+    <Attempt id="4" started="08/24/2025 13:39:19" isStartedSynced="True" ended="08/24/2025 13:40:04" isEndedSynced="True">
+      <RealTime>00:00:44.6237121</RealTime>
+    </Attempt>
+    <Attempt id="5" started="08/24/2025 15:07:41" isStartedSynced="True" ended="08/24/2025 15:07:47" isEndedSynced="True" />
+    <Attempt id="6" started="08/24/2025 15:07:47" isStartedSynced="True" ended="08/24/2025 15:08:03" isEndedSynced="True" />
+    <Attempt id="7" started="08/24/2025 15:08:03" isStartedSynced="True" ended="08/24/2025 15:08:17" isEndedSynced="True" />
+    <Attempt id="8" started="08/24/2025 15:08:17" isStartedSynced="True" ended="08/24/2025 15:08:51" isEndedSynced="True" />
+    <Attempt id="9" started="08/24/2025 15:08:51" isStartedSynced="True" ended="08/24/2025 15:09:05" isEndedSynced="True" />
+    <Attempt id="10" started="08/24/2025 15:09:05" isStartedSynced="True" ended="08/24/2025 15:09:23" isEndedSynced="True" />
+    <Attempt id="11" started="08/24/2025 15:09:23" isStartedSynced="True" ended="08/24/2025 15:10:07" isEndedSynced="True">
+      <RealTime>00:00:43.5201149</RealTime>
+    </Attempt>
+  </AttemptHistory>
+  <Segments>
+    <Segment>
+      <Name>Mission 4</Name>
+      <Icon><![CDATA[AAEAAAD/////AQAAAAAAAAAMAgAAAFFTeXN0ZW0uRHJhd2luZywgVmVyc2lvbj00LjAuMC4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWIwM2Y1ZjdmMTFkNTBhM2EFAQAAABVTeXN0ZW0uRHJhd2luZy5CaXRtYXABAAAABERhdGEHAgIAAAAJAwAAAA8DAAAA8gQAAAKJUE5HDQoaCgAAAA1JSERSAAAAZAAAAGQIBgAAAHDilVQAAAAEZ0FNQQAAsY8L/GEFAAAACXBIWXMAAA68AAAOvAGVvHJJAAAElElEQVR4Xu3YwZETQRKFYUzAFEzABEzABEyZI2ZgAqZgAse5DcyBiNKvv7O6UEml7ngb8e0hg1Lne3lg2Q9vb2/xRHQY6+gw1tFhrKPDWEeHsY4OYx0dxjo6jHV0GOvocIa//3n/r9Ni3ll0OAMDnA3zzqLDGRjgbJh3Fh3OwABnw7yz6HAPLkivr68Xfvx4ObRv375csMwt9rWXDvfgApSDeG89OtyDC1AO4r316HAPLkA5iPfWo0PDD7JwYiC+Pxrm4YGI79nnFh0afsCO0GIAvj8a5rEjtPiefW7RoeEH7AgtBuD7o2EeO0KL79nnFh0afsCO0GIAvj8a5rEjtPiefW7RoeEHRg/w+euxMQ/z5iAPxjzMm4M8GPMwbw7yYMzDvHc/CH/w3gf4+Gkt26nCvOzjfw+kw3f8gRzkEvOyjxzkRrZThXnZRw5yI9upwrzs43AHYSG/vo95/flpzO+XEvexnVvMyz5ykB45Qov72M4t5mUfOUiPHKHFfWznFvOyjxykR47Q4j62c4t52cfTH4SBreSKllyR0kdwX+ZhXvaRg5CUPIL7Mg/zso8chKTkEdyXeZiXfeQgJCWP4L7Mw7zs43QHYcF8P+qqdPw+8T3zMC/7yEE6chAEYEA7QqtX0KgcBAEY0I7Q6hU0KgdBAAbsHYD4/t64PzEv+8hBJuP+xLzsIweZjPsT87KPHGQy7k/Myz6mH4T4gz0WsmWll/iXco/9RsF2rFjmCvvcokPDD/RYiJaVUrLSK/YbBduxYpkr7HOLDg0/0GMhWlZKyUqv2G8UbMeKZa6wzy06NPxAj4VoWSklK71iv1GwHSuWucI+t+jQ8AM9FqJyVZKVXOH7QfwfGbZjyzJX2OcWHRp+oMdCVK5KstIrfD8oB4Grkqz0Ct8PykHgqiQrvcL3g57+IPxB/sOQ+OftH1MtC3lPvQMQ33N/5mUf/Ici/zz7/keH7/gD/CDxzzMAMfC95SAIQAx8bzkIAhAD39vpD9L7IAMwoP7FXOD7UVZ6he+Zh3nZx/T/c5E/kINcYl72kYN0WOkVvmce5mUfOUiHlV7he+ZhXvZxvoPgL+FRVvII7ss8zMs+chCwkkdwX+ZhXvaRg4CVPIL7Mg/zso8cBKzkEdyXeZiXfTz9QYiBrdQRVuoI7mM7t5iXfeQgUvII7mM7t5iXfeQgUvII7mM7t5iXfeQgUvII7mM7t5iXfRzuIMRCHs12qjAv+8hBbmQ7VZiXfeQgN7KdKszLPnKQG9lOFeZlH9MPQvzBex/o2TAP8/7vAUiHhh/IQS7z5iAPxjzMm4M8GPMw79MdhLgw3x8N8/AAxPfsc4sODT9gR2gxAN8fDfPYEVp8zz636NDwA3aEFgPw/dEwjx2hxffsc4sODT9gR2gxAN8fDfPYEVp8zz636HAPfpB6BzqaXuHEvvbS4R5cgHIQ761Hh3twAcpBvLceHe7BBSgH8d56dDgDFzwb5p1FhzMwwNkw7yw6nIEBzoZ5Z9HhDAxwNsw7iw5jHR3GOjqMdXQY6+gw1tFhrKPDWEeHsY4OYx0dxipvH/4ABENViK7l7NcAAAAASUVORK5CYIIL]]></Icon>
+      <SplitTimes>
+        <SplitTime name="Personal Best">
+          <RealTime>00:00:43.5201149</RealTime>
+        </SplitTime>
+      </SplitTimes>
+      <BestSegmentTime>
+        <RealTime>00:00:43.5201149</RealTime>
+      </BestSegmentTime>
+      <SegmentHistory>
+        <Time id="4">
+          <RealTime>00:00:44.6237121</RealTime>
+        </Time>
+        <Time id="11">
+          <RealTime>00:00:43.5201149</RealTime>
+        </Time>
+      </SegmentHistory>
+    </Segment>
+  </Segments>
+  <AutoSplitterSettings>
+    <Version>1.5</Version>
+    <ScriptPath>C:\Users\Davide\Documents\[Portable]\LiveSplit\[Autosplitters]\Metal Slug 1\Metal Slug 1 - Autosplitter_M4.asl</ScriptPath>
+    <Start>True</Start>
+    <Reset>True</Reset>
+    <Split>True</Split>
+    <CustomSettings />
+  </AutoSplitterSettings>
+</Run>
